@@ -21,3 +21,10 @@
 .idea/
 *.tmproj
 .vscode/
+# Charts
+*.png
+.git/
+ct.yaml
+lintconf.yaml
+values.schema.json
+/workflows
