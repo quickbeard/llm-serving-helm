@@ -2,14 +2,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "helm-llm-serving.fullname" . }}
-  labels:
-    {{- include "helm-llm-serving.labels" . | nindent 4 }}
+  name: "{{ .Release.Name }}-hpa"
+  namespace: {{ .Release.Namespace }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "helm-llm-serving.fullname" . }}
+    name: vllm
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
