@@ -1,6 +1,7 @@
 # Misc
 .DS_Store
 **/.DS_Store
+.prettierignore
 
 # Common VCS dirs
 .git/
