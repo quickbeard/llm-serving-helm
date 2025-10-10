@@ -5,10 +5,10 @@ metadata:
   name: "{{ .Release.Name }}-storage-claim"
   namespace: {{ .Release.Namespace }}
 spec:
+  storageClassName: nfs-csi
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.extraInit.pvcStorage }}
-      storageClass: nfs-csi
 {{- end }}
