@@ -5,7 +5,7 @@ metadata:
   name: "{{ .Release.Name }}-storage-claim"
   namespace: {{ .Release.Namespace }}
 spec:
-  storageClassName: nfs-csi
+  storageClassName: {{ .Values.extraInit.storageClassName }}
   accessModes:
     - ReadWriteOnce
   resources:
