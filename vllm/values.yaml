@@ -96,7 +96,7 @@ extraInit:
     "relative_s3_model_path/opt-125m"
     # -- Storage size of the s3
   pvcStorage: "1Gi"
-  # -- NFS server address
+  storageClassName: "nfs-csi"
   nfsServer: "10.24.10.14"
   awsEc2MetadataDisabled: true
 
