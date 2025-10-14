@@ -1,6 +1,10 @@
 # -- Default values for chart vllm
 # -- Declare variables to be passed into your templates.
 
+# -- Storage configuration
+storageClassName: "nfs-csi"
+nfsServer: "10.24.10.14"
+
 # -- Image configuration
 image:
   # -- Image repository
@@ -8,23 +12,7 @@ image:
   # -- Image tag
   tag: "latest"
   # -- Container launch command
-  command:
-    [
-      "vllm",
-      "serve",
-      "/data/",
-      "--served-model-name",
-      "opt-125m",
-      "--enforce-eager",
-      "--dtype",
-      "bfloat16",
-      "--block-size",
-      "16",
-      "--host",
-      "0.0.0.0",
-      "--port",
-      "8000",
-    ]
+  command: ["vllm", "serve", "/data/", "--served-model-name", "opt-125m", "--enforce-eager", "--dtype", "bfloat16", "--block-size", "16", "--host", "0.0.0.0", "--port", "8000"]
 
 # -- Container port
 containerPort: 8000
@@ -58,9 +46,9 @@ resources:
     # -- Number of gpus used
     nvidia.com/gpu: 1
 
-# -- Type of gpu used
-gpuModels:
-  - "TYPE_GPU_USED"
+# -- Node names where pods can be scheduled
+nodeNames:
+  - "ubuntu-sv14"
 
 # -- Autoscaling configuration
 autoscaling:
@@ -89,16 +77,8 @@ customObjects: []
 # -- Disruption Budget Configuration
 maxUnavailablePodDisruptionBudget: ""
 
-# -- Additional configuration for the init container
-extraInit:
-  # -- Path of the model on the s3 which hosts model weights and config files
-  s3modelpath:
-    "relative_s3_model_path/opt-125m"
-    # -- Storage size of the s3
-  pvcStorage: "1Gi"
-  storageClassName: "nfs-csi"
-  nfsServer: "10.24.10.14"
-  awsEc2MetadataDisabled: true
+# -- Host path for local storage
+hostPath: "/root/workspace/thuanpt/vllm/models/gpt2"
 
 # -- Additional containers configuration
 extraContainers: []
@@ -110,9 +90,8 @@ readinessProbe:
   # -- How often (in seconds) to perform the readiness probe
   periodSeconds: 5
   # -- Number of times after which if a probe fails in a row, Kubernetes considers that the overall check has failed: the container is not ready
-  failureThreshold:
-    3
-    # -- Configuration of the Kubelet http request on the server
+  failureThreshold: 3
+   # -- Configuration of the Kubelet http request on the server
   httpGet:
     # -- Path to access on the HTTP server
     path: /health
@@ -121,7 +100,7 @@ readinessProbe:
 
 # -- Liveness probe configuration
 livenessProbe:
-  # -- Number of seconds after the container has started before liveness probe is initiated
+ # -- Number of seconds after the container has started before liveness probe is initiated
   initialDelaySeconds: 15
   # -- Number of times after which if a probe fails in a row, Kubernetes considers that the overall check has failed: the container is not alive
   failureThreshold: 3
