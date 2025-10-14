@@ -25,6 +25,4 @@
 .vscode/
 
 # Helm
-Chart.lock
-charts/
 *.tgz
