@@ -5,6 +5,9 @@
 storageClassName: "nfs-csi"
 nfsServer: "10.24.10.14"
 
+serviceType: NodePort
+nodePort: 32000
+
 # -- Image configuration
 image:
   # -- Image repository
