@@ -1,0 +1,6 @@
+dependencies:
+- name: node-feature-discovery
+  repository: ""
+  version: 0.17.3
+digest: sha256:5fc6a9992a1ab9f18a46ca1fe7cb426fcbe57c7a7244bdd5e05d199a3bee4e3f
+generated: "2025-10-22T14:53:14.728275+07:00"
