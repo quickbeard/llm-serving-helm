@@ -1,0 +1,27 @@
+environments:
+  staging:
+    values:
+      - ./values/staging/csi-driver-nfs.yaml
+      - ./values/staging/nvidia-device-plugin.yaml
+      - ./values/staging/vllm.yaml
+  production:
+    values:
+      - ./values/production/csi-driver-nfs.yaml
+      - ./values/production/nvidia-device-plugin.yaml
+      - ./values/production/vllm.yaml
+
+---
+
+releases:
+- name: csi-driver-nfs
+  chart: ./charts/csi-driver-nfs
+  namespace: kube-system
+  createNamespace: false
+- name: nvidia-device-plugin
+  chart: ./charts/nvidia-device-plugin
+  namespace: aiops
+  createNamespace: true
+- name: vllm
+  chart: ./charts/vllm
+  namespace: aiops
+  createNamespace: true
