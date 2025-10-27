@@ -5,10 +5,10 @@ metadata:
   name: "{{ .Release.Name }}-storage-claim"
   namespace: {{ .Release.Namespace }}
 spec:
-  storageClassName: {{ .Values.storageClassName }}
+  storageClassName: {{ .Values.extraInit.storageClassName }}
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.pvcStorage }}
+      storage: {{ .Values.extraInit.pvcStorage }}
 {{- end }}

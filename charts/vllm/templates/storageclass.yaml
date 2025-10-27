@@ -1,10 +1,11 @@
+{{-   if .Values.extraInit  }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: {{ .Values.storageClassName }}
+  name: {{ .Values.extraInit.storageClassName }}
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: {{ .Values.nfsServer }}
+  server: {{ .Values.extraInit.nfsServer }}
   share: /data/delete
 reclaimPolicy: Delete
 volumeBindingMode: Immediate

@@ -1,11 +1,6 @@
 # -- Default values for chart vllm
 # -- Declare variables to be passed into your templates.
 
-# -- Storage configuration
-storageClassName: "nfs-csi"
-nfsServer: "10.24.10.14"
-pvcStorage: "1Gi"
-
 serviceType: NodePort
 nodePort: 32000
 
@@ -50,6 +45,10 @@ resources:
     # -- Number of gpus used
     nvidia.com/gpu: 1
 
+# # -- Type of gpu used
+# gpuModels:
+#   - "TYPE_GPU_USED"
+
 # -- Node names where pods can be scheduled
 nodeNames:
   - "ubuntu-sv14"
@@ -81,6 +80,16 @@ customObjects: []
 # -- Disruption Budget Configuration
 maxUnavailablePodDisruptionBudget: ""
 
+# # -- Additional configuration for the init container
+# extraInit:
+#   # -- Path of the model on the s3 which hosts model weights and config files
+#   s3modelpath: "relative_s3_model_path/opt-125m"
+#   # -- Storage size of the s3
+#   awsEc2MetadataDisabled: true
+#   pvcStorage: "1Gi"
+#   storageClassName: "nfs-csi"
+#   nfsServer: "10.24.10.14"
+
 # -- Host path for local storage
 hostPath: "/root/workspace/thuanpt/vllm/models/gpt2"
 
@@ -95,7 +104,7 @@ readinessProbe:
   periodSeconds: 5
   # -- Number of times after which if a probe fails in a row, Kubernetes considers that the overall check has failed: the container is not ready
   failureThreshold: 3
-   # -- Configuration of the Kubelet http request on the server
+  # -- Configuration of the Kubelet http request on the server
   httpGet:
     # -- Path to access on the HTTP server
     path: /health
