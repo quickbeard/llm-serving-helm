@@ -1,7 +1,5 @@
 # Helm charts for serving LLMs
 
-# Helm charts for serving LLMs
-
 CSI driver for NFS (should be installed in `kube-system` namespace): supports dynamic provisioning of Persistent Volumes via Persistent Volume Claims by creating a new sub directory under NFS server.
 
 `helm upgrade --install csi-driver-nfs charts/csi-driver-nfs --namespace kube-system -f values/production/csi-driver-nfs.yaml`
