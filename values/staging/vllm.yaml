@@ -4,6 +4,7 @@
 # -- Storage configuration
 storageClassName: "nfs-csi"
 nfsServer: "10.24.10.14"
+pvcStorage: "1Gi"
 
 serviceType: NodePort
 nodePort: 32000
