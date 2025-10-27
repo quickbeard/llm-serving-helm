@@ -16,4 +16,4 @@ vLLM: inference and serving engine for LLMs (NVIDIA device plugin required).
 
 StackGres: PostgreSQL operator for K8s.
 
-`helm install stackgres-operator charts/stackgres-operator --namespace stackgres --create-namespace -f values/production/stackgres-operator.yaml`
+`helm upgrade --install stackgres-operator charts/stackgres-operator --namespace stackgres --create-namespace -f values/production/stackgres-operator.yaml`
