@@ -87,8 +87,9 @@ maxUnavailablePodDisruptionBudget: ""
 #   # -- Storage size of the s3
 #   awsEc2MetadataDisabled: true
 #   pvcStorage: "1Gi"
-#   storageClassName: "nfs-csi"
-#   nfsServer: "10.24.10.14"
+
+#  storageClassName: "nfs-csi"
+#  nfsServer: "10.24.10.14"
 
 # -- Host path for local storage
 hostPath: "/root/workspace/thuanpt/vllm/models/gpt2"
