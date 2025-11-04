@@ -12,6 +12,10 @@
 
 `helm upgrade --install vllm charts/vllm --namespace vllm --create-namespace -f values/production/vllm.yaml`
 
-- StackGres: PostgreSQL operator for K8s.
+- CloudNativePG (should be installed in a separate namespace, i.e. `cnpg-system`): PostgreSQL operator.
 
-`helm upgrade --install stackgres-operator charts/stackgres-operator --namespace stackgres --create-namespace -f values/production/stackgres-operator.yaml`
+`helm upgrade --install cloudnative-pg charts/cloudnative-pg --namespace cnpg-system --create-namespace -f values/production/cloudnative-pg.yaml`
+
+- PostgreSQL: CloudNativePG required
+
+`helm upgrade --install pg-cluster charts/pg-cluster --namespace pg-cluster --create-namespace -f values/production/pg-cluster.yaml`
