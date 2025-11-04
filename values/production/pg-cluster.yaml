@@ -203,7 +203,7 @@ cluster:
 
   storage:
     size: 8Gi
-    storageClass: ""
+    storageClass: "nfs-csi"
 
   walStorage:
     enabled: false
