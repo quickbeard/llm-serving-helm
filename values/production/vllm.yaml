@@ -52,6 +52,8 @@ resources:
 # -- Node names where pods can be scheduled
 nodeNames:
   - "ubuntu-sv14"
+  - "ubuntu-sv15"
+  - "ubuntu-sv16"
 
 # -- Autoscaling configuration
 autoscaling:

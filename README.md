@@ -1,8 +1,6 @@
 # Helm charts for serving LLMs
 
-- NVIDIA device plugin: used to manage NVIDIA GPUs in a K8s cluster.
-
-`helm upgrade --install nvidia-device-plugin charts/nvidia-device-plugin --namespace nvidia-device-plugin --create-namespace -f values/production/nvidia-device-plugin.yaml`
+## Charts
 
 - vLLM: inference and serving engine for LLMs (NVIDIA device plugin required).
 
@@ -15,6 +13,12 @@
 - PostgreSQL: CloudNativePG required
 
 `helm upgrade --install pg-cluster charts/pg-cluster --namespace pg-cluster --create-namespace -f values/production/pg-cluster.yaml`
+
+## Dependencies
+
+- NVIDIA device plugin: used to manage NVIDIA GPUs in a K8s cluster.
+
+`helm upgrade --install nvidia-device-plugin charts/nvidia-device-plugin --namespace nvidia-device-plugin --create-namespace -f values/production/nvidia-device-plugin.yaml`
 
 - CSI driver for NFS (should be installed in `kube-system` namespace): supports dynamic provisioning of Persistent Volumes via Persistent Volume Claims by creating a new sub directory under NFS server.
 
