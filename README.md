@@ -2,7 +2,7 @@
 
 ## Charts
 
-- vLLM: inference and serving engine for LLMs (NVIDIA device plugin required).
+- vLLM (NVIDIA device plugin required): inference and serving engine for LLMs.
 
 `helm upgrade --install vllm charts/vllm --namespace vllm --create-namespace -f values/production/vllm.yaml`
 
@@ -10,9 +10,13 @@
 
 `helm upgrade --install cloudnative-pg charts/cloudnative-pg --namespace cnpg-system --create-namespace -f values/production/cloudnative-pg.yaml`
 
-- PostgreSQL: CloudNativePG required
+- PostgreSQL (CloudNativePG required)
 
 `helm upgrade --install pg-cluster charts/pg-cluster --namespace pg-cluster --create-namespace -f values/production/pg-cluster.yaml`
+
+- LiteLLM (PostgreSQL required): LLM Gateway to call 100+ LLMs, load balance, cost tracking across projects.
+
+`helm upgrade --install litellm charts/litellm --namespace litellm --create-namespace -f values/production/litellm.yaml`
 
 ## Dependencies
 
